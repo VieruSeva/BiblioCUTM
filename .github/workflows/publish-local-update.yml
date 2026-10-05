@@ -1,0 +1,33 @@
+name: Synchronize local laboratory update
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-local-update.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    if: "${{ github.event.head_commit.message == 'ci: synchronize local laboratory update' }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+      - name: Merge exact local commit test and push
+        env:
+          LOCAL_BUNDLE: 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
+        run: |
+          python3 - <<'PYCODE'
+          import os, base64
+          from pathlib import Path
+          Path(os.environ['RUNNER_TEMP'], 'local.bundle').write_bytes(base64.b64decode(os.environ['LOCAL_BUNDLE']))
+          PYCODE
+          git config user.name "Vieru Sevastean"
+          git config user.email "196898561+VieruSeva@users.noreply.github.com"
+          git fetch "$RUNNER_TEMP/local.bundle" 'refs/heads/main:refs/remotes/laboratory-local/main'
+          git merge --no-ff refs/remotes/laboratory-local/main -m "merge: synchronize local laboratory update"
+          python3 -m unittest discover -s tests -v
+          git push origin main
+          git log --oneline --graph --decorate --all
+          git ls-remote --heads --tags origin

@@ -7,7 +7,7 @@ permissions:
   contents: write
 jobs:
   publish:
-    if: github.event.head_commit.message == 'ci: publish original laboratory Git history'
+    if: "${{ github.event.head_commit.message == 'ci: publish original laboratory Git history' }}"
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

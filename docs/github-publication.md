@@ -1,37 +1,35 @@
-# Publicarea pe GitHub
+# GitHub publication / Publicarea pe GitHub
 
-Această etapă nu a fost executată încă. Istoricul local este pregătit.
-Destinația propusă este repository-ul nou VieruSeva/BiblioCUTM.
-Nu se modifică repository-urile existente ale contului.
+Repository public: https://github.com/VieruSeva/BiblioCUTM
 
-După crearea unui repository gol pe GitHub și autentificarea Git:
+Istoricul original, toate cele 8 ramuri și tag-ul adnotat `v1.0.0` au fost publicate. Prima publicare a reușit în rularea GitHub Actions 37365286775, după verificarea celor 10 teste.
+
+## Execution environments / Medii de execuție
+
+Git, commit-urile, ramurile, conflictul și modificarea locală sunt realizate în mediul de lucru. Publicarea autentificată este executată de un runner standard GitHub Actions, folosind istoricul Git exact transferat prin bundle. Commit-urile originale nu sunt recreate.
 
 ```sh
-git remote -v
-git push -u origin main
 git push origin --all
 git push origin --tags
 ```
 
-Pentru modificarea directă în GitHub se creează docs/remote-update.md cu textul:
-„Documentație adăugată în GitHub pentru verificarea sincronizării.”
-După commit-ul remote:
+Fișierul `docs/remote-update.md` a fost creat direct pe GitHub în commit-ul `be7efddae033a185a1f98c3719f86feece1ab536`. Copia locală a preluat efectiv modificarea:
 
 ```sh
 git pull --ff-only origin main
-git log -1 --oneline
 ```
 
-Pentru sincronizarea unei modificări locale:
+Ulterior, `docs/local-update.md` și documentația publicării au fost actualizate local și înregistrate într-un commit. Runner-ul publică acest commit prin `git push origin main`.
+
+## Reproduce / Reproducere
 
 ```sh
-printf '\nActualizare locală după sincronizare.\n' >> docs/remote-update.md
-git add docs/remote-update.md
-git commit -m "docs: record local update after remote synchronization"
-git push origin main
-git clone https://github.com/VieruSeva/BiblioCUTM.git ../BiblioCUTM-GitHub-clone
-git -C ../BiblioCUTM-GitHub-clone log --oneline --all
+git clone https://github.com/VieruSeva/BiblioCUTM.git BiblioCUTM-GitHub-clone
+cd BiblioCUTM-GitHub-clone
+git log --oneline --graph --decorate --all
+git branch -a
+git tag --list
+python3 -m unittest discover -s tests -v
 ```
 
-Un clone GitHub include ramurile remote; `git branch -a` le afișează.
-Operațiile și ID-urile noi trebuie adăugate în raport după executare.
+Raportul final și jurnalul de execuție documentează comenzile efective și ID-urile commit-urilor.

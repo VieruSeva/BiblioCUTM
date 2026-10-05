@@ -1,0 +1,1 @@
+"""BiblioCUTM educational prototype."""

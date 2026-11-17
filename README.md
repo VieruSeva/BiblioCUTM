@@ -19,3 +19,7 @@ Catalog, rezervări de 48 de ore, împrumuturi de 14 zile, limita de 3 angajamen
 returnări, raport CSV și verificarea rolurilor sunt demonstrate prin funcții locale.
 Autentificarea, stocarea persistentă, interfața web și controlul concurenței
 rămân componente ale proiectului specificat în laboratorul 1.
+
+## Reader history
+
+Istoricul unui cititor este disponibil prin funcția reader_history.

@@ -5,7 +5,7 @@ from .models import Library, Reader, Book
 from .catalog import add_book, search
 from .reservations import reserve
 from .loans import issue, return_book
-from .reports import active_loans_csv
+from .reports import active_loans_csv, reader_history
 from .roles import require_permission
 
 def main():
@@ -23,6 +23,7 @@ def main():
     print(active_loans_csv(library, now).strip())
     return_book(library, loan.loan_id, now)
     print('Stare după returnare:', library.books['BC001'].status)
+    print('Istoric cititor:', [item.loan_id for item in reader_history(library, 'reader-demo')])
 
 if __name__ == '__main__':
     main()

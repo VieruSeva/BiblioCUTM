@@ -4,3 +4,9 @@ __pycache__/
 .env
 *.log
 exports/
+
+.env.*
+!.env.example
+*.tmp
+build/
+.pytest_cache/

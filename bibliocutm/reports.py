@@ -11,3 +11,12 @@ def active_loans_csv(library, now):
             writer.writerow([loan.loan_id, loan.reader_id, loan.inventory_id,
                              loan.due_at.isoformat(), now > loan.due_at])
     return stream.getvalue()
+
+
+def reader_history(library, reader_id):
+    if reader_id not in library.readers:
+        raise ValueError("Cititorul nu există")
+    return sorted(
+        (loan for loan in library.loans.values() if loan.reader_id == reader_id),
+        key=lambda loan: (loan.issued_at, loan.loan_id),
+    )
